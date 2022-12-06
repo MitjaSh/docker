@@ -1,0 +1,44 @@
+docker login
+docker pull store/oracle/database-enterprise:12.2.0.1
+
+docker-compose up --build
+
+docker build .
+docker build -t image_name:version folder
+- создать образ из Dockerfile
+
+
+
+docker images
+
+docker rmi image_name
+- удалить образ
+
+docker run -d -p 8080:80 image_name
+-d - daemon
+-p - пробросить порты
+- создать контейнер на основе образа
+
+docker ps
+- смотрим запущенные контейнеры
+
+docker ps -a
+- смотрим все контейнеры
+
+docker stop id_container/container_name
+- остановить контейнер
+
+docker start id_container/container_name
+
+docker rm id_container/container_name
+- удалить контейнер
+
+docker exec -it id_container/container_name bash
+- попасть внутрь контейнера
+
+docker commit -m "Message" -a "author" id_container old_image_name/new_image_name
+- создать новый образ из контейнера
+
+docker login -u docker-registry-username
+docker push image_name
+- запушить образ на docker_hub

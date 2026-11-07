@@ -42,3 +42,17 @@ docker commit -m "Message" -a "author" id_container old_image_name/new_image_nam
 docker login -u docker-registry-username
 docker push image_name
 - запушить образ на docker_hub
+
+03.11.2026
+-----------------------------------
+docker login
+docker pull truevoly/oracle-12c
+
+docker run -d --name oracle12c \
+  -p 1521:1521 -p 8080:8080 \
+  -v oracle_data:/u01/app/oracle \
+  truevoly/oracle-12c
+
+docker logs -f oracle12c
+
+localhost:1521 sid=xe sys/oracle

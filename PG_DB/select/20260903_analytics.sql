@@ -31,3 +31,16 @@ select *
  where instrument_type = 'currency'
      ;
 -- Доллар США	Dollar	86.75
+
+
+
+-- Бренды
+select instrument_type, brand, round(sum(invest_stat.fn_get_rub_amt(current_price, ccy)*quantity), 2) amt
+  from invest_stat.instruments i
+  join invest_stat.ownership o on i.instrument_uid = o.instrument_uid 
+  left join invest_stat.bonds b on i.instrument_uid = b.instrument_uid
+  left join invest_stat.dict d_bt on d_bt.id = b.type and  d_bt.dict = 'bond_type'
+ where quantity > 0
+ group by i.instrument_type, brand
+ order by 3 desc
+     ;
